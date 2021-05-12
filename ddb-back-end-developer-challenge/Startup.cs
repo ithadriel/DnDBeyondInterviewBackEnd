@@ -1,14 +1,22 @@
+using ddb_back_end_developer_challenge.Adapters.Persistence;
+using ddb_back_end_developer_challenge.Adapters.Rest.Models;
+using ddb_back_end_developer_challenge.Adapters.Utilities;
+using ddb_back_end_developer_challenge.Core.Models;
+using ddb_back_end_developer_challenge.Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -28,9 +36,14 @@ namespace ddb_back_end_developer_challenge
         {
 
             services.AddControllers();
+            services.AddDbContext<CharacterDbContext>(options =>
+                options.UseInMemoryDatabase("DomainCharacters")
+            );
+            services.AddScoped<ICharacterRepositoryAdapter, CharacterRepositoryAdapter>();
+            services.AddScoped<ICharacterService, CharacterService>();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "ddb_back_end_developer_challenge", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo {Title="DnD Beyond Back End Challenge", Version="1" });
             });
         }
 
@@ -54,6 +67,23 @@ namespace ddb_back_end_developer_challenge
             {
                 endpoints.MapControllers();
             });
+
+            SeedDatabase(app);
+        }
+
+        public static void SeedDatabase(IApplicationBuilder app)
+        {
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+                ICharacterRepositoryAdapter adapter = serviceScope.ServiceProvider.GetService<ICharacterRepositoryAdapter>();
+                using (StreamReader r = new StreamReader("briv.json"))
+                {
+                    string json = r.ReadToEnd();
+                    Character character = JsonConvert.DeserializeObject<Character>(json);
+                    DomainCharacter initialChar = CharacterConverter.ToDomain(character);
+                    adapter.SaveCharacter(initialChar);
+                }
+            }
         }
     }
 }

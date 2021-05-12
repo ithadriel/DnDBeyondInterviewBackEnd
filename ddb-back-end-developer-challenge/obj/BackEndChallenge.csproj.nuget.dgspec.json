@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mpspi\\Desktop\\DnDBeyondInterviewBackEnd\\ddb-back-end-developer-challenge\\BackEndChallenge.csproj": {}
+    "C:\\Users\\mpspi\\Desktop\\DnDBeyondInterviewRoot\\DnDBeyondInterviewBackEnd\\ddb-back-end-developer-challenge\\BackEndChallenge.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mpspi\\Desktop\\DnDBeyondInterviewBackEnd\\ddb-back-end-developer-challenge\\BackEndChallenge.csproj": {
+    "C:\\Users\\mpspi\\Desktop\\DnDBeyondInterviewRoot\\DnDBeyondInterviewBackEnd\\ddb-back-end-developer-challenge\\BackEndChallenge.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mpspi\\Desktop\\DnDBeyondInterviewBackEnd\\ddb-back-end-developer-challenge\\BackEndChallenge.csproj",
+        "projectUniqueName": "C:\\Users\\mpspi\\Desktop\\DnDBeyondInterviewRoot\\DnDBeyondInterviewBackEnd\\ddb-back-end-developer-challenge\\BackEndChallenge.csproj",
         "projectName": "BackEndChallenge",
-        "projectPath": "C:\\Users\\mpspi\\Desktop\\DnDBeyondInterviewBackEnd\\ddb-back-end-developer-challenge\\BackEndChallenge.csproj",
+        "projectPath": "C:\\Users\\mpspi\\Desktop\\DnDBeyondInterviewRoot\\DnDBeyondInterviewBackEnd\\ddb-back-end-developer-challenge\\BackEndChallenge.csproj",
         "packagesPath": "C:\\Users\\mpspi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mpspi\\Desktop\\DnDBeyondInterviewBackEnd\\ddb-back-end-developer-challenge\\obj\\",
+        "outputPath": "C:\\Users\\mpspi\\Desktop\\DnDBeyondInterviewRoot\\DnDBeyondInterviewBackEnd\\ddb-back-end-developer-challenge\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mpspi\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -47,6 +47,10 @@
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
               "version": "[1.10.13, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

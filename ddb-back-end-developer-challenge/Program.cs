@@ -1,3 +1,4 @@
+using ddb_back_end_developer_challenge.Adapters.Persistence;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;

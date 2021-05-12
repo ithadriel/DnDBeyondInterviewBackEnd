@@ -8,23 +8,34 @@ namespace ddb_back_end_developer_challenge.Adapters.Persistence
 {
     public class CharacterRepositoryAdapter : ICharacterRepositoryAdapter
     {
-        public CharacterRepositoryAdapter()
+        private CharacterDbContext dbContext;
+        public CharacterRepositoryAdapter(CharacterDbContext dbContext)
         {
+            this.dbContext = dbContext;
+        }
+
+        public List<DomainCharacter> GetAllCharacters()
+        {
+            return dbContext.DomainCharacters.ToList();
         }
 
         public DomainCharacter GetCharacter(long id)
         {
-            throw new NotImplementedException();
+            return dbContext.Find<DomainCharacter>(id);
         }
 
-        public void SaveeCharacter(DomainCharacter character)
+        public DomainCharacter SaveCharacter(DomainCharacter character)
         {
-            throw new NotImplementedException();
+            dbContext.Add(character);
+            dbContext.SaveChanges();
+            return character;
         }
 
-        public void UpdateCharacter(DomainCharacter expectedSavedCharacter)
+        public DomainCharacter UpdateCharacter(DomainCharacter characterToUpdate)
         {
-            throw new NotImplementedException();
+            dbContext.Update(characterToUpdate);
+            dbContext.SaveChanges();
+            return characterToUpdate;
         }
     }
 }
